@@ -2,7 +2,7 @@ FROM pytorch/pytorch:1.6.0-cuda10.1-cudnn7-runtime
 
 LABEL maintainer="gourisankar@iitg.ac.in"
 LABEL version="0.1"
-LABEL description="pytorch cuda 10.1 and NLP libraries"
+LABEL description="Image for PyTorch Cuda 10.1, transformers and other required libraries for NLP and deep learning "
 
 RUN apt-get update
 
