@@ -9,7 +9,7 @@ RUN apt-get update
 #
 RUN apt-get install -y wget vim htop fish datamash graphviz libgraphviz-dev
 
-RUN pip3 --no-cache-dir install ipython pandas
+RUN pip3 --no-cache-dir install ipython pandas numpy
 
 RUN pip3 --no-cache-dir install docopt joblib natsort scipy
 
