@@ -1,15 +1,27 @@
-FROM pytorch/pytorch:1.6.0-cuda10.1-cudnn7-runtime
+# Each instruction in this file generates a new layer that gets pushed to your local image cache
+ 
+# Lines preceeded by # are regarded as comments and ignored
+ 
+#
+# The line below states we will base our new image on the Latest Official Ubuntu 
+# Remove py3 for python 2 image
+FROM tensorflow/tensorflow:latest-gpu-py3
+#ENV http_proxy http://172.16.117.121:3128
+#ENV https_proxy http://172.16.117.121:3128
 
-LABEL maintainer="gourisankar@iitg.ac.in"
+# Identify the maintainer of an image
+LABEL maintainer="abhishek.abhishek@iitg.ac.in"
 LABEL version="0.1"
-LABEL description="Image for PyTorch Cuda 10.1, transformers and other required libraries for NLP and deep learning "
-
+LABEL description="Tensorflow + some other libraries"
+#
+# Update the image to the latest packages
+#RUN apt-get update && apt-get upgrade -y
 RUN apt-get update
 
 #
 RUN apt-get install -y wget vim htop fish datamash graphviz libgraphviz-dev
 
-RUN pip3 --no-cache-dir install ipython pandas numpy
+RUN pip3 --no-cache-dir install ipython pandas
 
 RUN pip3 --no-cache-dir install docopt joblib natsort scipy
 
@@ -19,11 +31,9 @@ RUN pip3 --no-cache-dir install dill bleach namedtupled
 
 RUN pip3 --no-cache-dir install PyEMD
 
-RUN pip3 --no-cache-dir install tensorflow
+RUN pip3 --no-cache-dir install pytorch-pretrained-bert==0.6.1 torch==1.0.1.post2 seqeval==0.0.5 nltk
 
 RUN pip3 --no-cache-dir install networkx pathlib pygraphviz
-
-RUN pip3 --no-cache-dir install transformers
 
 RUN apt-get install -y git
 
